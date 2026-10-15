@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "comment": "JARVIS YouTube creator vocabulary. Canonical names with aliases, transcription mistakes, and pronunciation hints. Ordinary phrases live under 'phrases' and are NEVER treated as creator names. Add new creators by appending an entry here — no routing-code changes needed. Optional verifiedUrl must point at a real channel page confirmed via YouTube search; leave it empty rather than guessing.",
+  "creators": [
+    {
+      "canonical": "ILLIT",
+      "aliases": ["illit", "ill it", "i'll it", "illit channel", "ailit", "illitt"],
+      "hints": ["kpop girl group"],
+      "verifiedUrl": ""
+    },
+    {
+      "canonical": "zbing z.",
+      "aliases": ["zbing z", "zbingz", "z bing z", "zbing z.", "sbing z", "zbing zee"],
+      "hints": ["thai gaming youtuber"],
+      "verifiedUrl": ""
+    },
+    {
+      "canonical": "PRIMKUNG",
+      "aliases": ["primkung", "prim kung", "prim k ung", "primkung channel"],
+      "hints": [],
+      "verifiedUrl": ""
+    },
+    {
+      "canonical": "GUYNGID",
+      "aliases": ["guyngid", "guy ngid", "guying id", "guy ng id"],
+      "hints": [],
+      "verifiedUrl": ""
+    },
+    {
+      "canonical": "9arm",
+      "aliases": ["9arm", "nine arm", "9 arm", "นายอาร์ม", "arm channel", "ninearm"],
+      "hints": ["thai tech youtuber"],
+      "verifiedUrl": ""
+    },
+    {
+      "canonical": "Uncanny Boy",
+      "aliases": ["uncanny boy", "uncannyboy", "uncanny boys", "uncannyboi"],
+      "hints": [],
+      "verifiedUrl": ""
+    },
+    {
+      "canonical": "YouTube",
+      "aliases": ["youtube channel", "youtube creator"],
+      "hints": ["service name, not a creator"],
+      "verifiedUrl": ""
+    }
+  ],
+  "phrases": [
+    {
+      "phrase": "thanks for watching",
+      "aliases": ["thanks for watching", "thank you for watching", "thanks for watchin"],
+      "note": "Common outro phrase. Never a creator name. Search literally only when explicitly requested."
+    }
+  ]
+}
