@@ -38,6 +38,15 @@ Depending on the version and enabled features, JARVIS may require:
 
 Follow the setup instructions included with the project for any additional dependencies.
 
+### 4. Optional Integrations
+
+You can optionally extend JARVIS with the following integrations, depending on the version and supported configuration:
+
+- **Clicky** — adds screen-aware computer interaction, such as clicking, moving the cursor, hovering, scrolling, or interacting with visible interface elements where supported.
+- **An external AI API** — optionally connect an AI API provider, such as OpenAI, to provide additional AI capabilities alongside or instead of local AI, depending on the available integration and configuration.
+
+These integrations are optional and are not required for every version of JARVIS. Follow the relevant setup instructions, configure API credentials securely, and check whether the chosen provider has usage limits or charges. External AI APIs may send prompts or other information to the provider for processing.
+
 ## How It Works
 
 | Component | What it does |
