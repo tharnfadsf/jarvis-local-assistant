@@ -1,7 +1,0 @@
-{
-  "_comment": "VOICE PIPELINE 2.0 user vocabulary. Add terms JARVIS repeatedly mishears (one per line). These are candidates for the correction layer only: a replacement still requires command context (see jarvis-core VOICE_CORRECTION_RULES), so adding a word here never hijacks unrelated sentences.",
-  "titles": ["Frieren", "Loverboy", "Magnetic", "ILLIT"],
-  "games": ["Roblox", "Minecraft", "Steam"],
-  "sites": ["YouTube", "YouTube Music", "Google", "Discord", "Gmail", "Wikipedia", "TikTok", "Instagram"],
-  "custom": []
-}
