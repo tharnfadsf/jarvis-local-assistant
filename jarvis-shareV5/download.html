@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#06111c">
+<title>J.A.R.V.I.S. Share — Download</title>
+<link rel="icon" href="jarvis-icon.png">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{
+  --bg:#06111c;--panel:#091a29;--panel2:#0b2030;--line:#17394c;
+  --cyan:#56e9ff;--blue:#19a9e4;--mint:#43e9c4;--muted:#6e96a9;
+  --text:#d8eff7;--amber:#f3c66b;--red:#ff7186;--purple:#b496ff;
+  --green:#4ade80;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 65% 8%,#0b2540 0,#071625 35%,#050d16 75%);color:var(--text);font:14px "Segoe UI",system-ui,sans-serif;min-height:100vh;line-height:1.6}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:900px;margin:0 auto;padding:40px 20px}
+header{text-align:center;margin-bottom:40px}
+.logo{width:80px;height:80px;border:2px solid var(--cyan);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--cyan);font-size:32px;font-weight:700;margin-bottom:16px;box-shadow:0 0 30px #22c9ee44}
+h1{font-size:36px;font-weight:500;letter-spacing:.08em;margin:0 0 8px;color:var(--text)}
+.subtitle{color:var(--muted);font-size:16px;margin:0 0 32px}
+.version{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:999px;font:11px Consolas,monospace;color:var(--mint);background:#081824;margin-bottom:24px}
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin:32px 0}
+.platform-card{background:linear-gradient(145deg,#0b2030ef,#071522f5);border:1px solid var(--line);border-radius:12px;padding:24px;position:relative;transition:border-color .2s,box-shadow .2s}
+.platform-card:hover{border-color:var(--cyan);box-shadow:0 12px 32px #0006,0 0 20px #56e9ff22}
+.platform-card.recommended{border-color:var(--mint);box-shadow:0 0 0 1px var(--mint),0 12px 32px #0006,0 0 20px #43e9c422}
+.platform-badge{position:absolute;top:-10px;right:20px;padding:2px 10px;border-radius:999px;font:10px Consolas,monospace;color:#050d16;background:var(--mint);font-weight:600}
+.platform-icon{width:48px;height:48px;border:1px solid var(--cyan);border-radius:12px;display:grid;place-items:center;color:var(--cyan);font-size:20px;margin-bottom:16px}
+.platform-name{font-size:18px;font-weight:600;margin:0 0 8px}
+.platform-desc{color:var(--muted);font-size:13px;margin:0 0 16px}
+.download-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid var(--cyan);border-radius:8px;background:transparent;color:var(--cyan);font:13px "Segoe UI",sans-serif;cursor:pointer;transition:all .2s;text-decoration:none}
+.download-btn:hover{background:var(--cyan);color:#050d16;text-decoration:none}
+.download-btn.primary{background:var(--cyan);color:#050d16}
+.download-btn.primary:hover{background:#3fd0e8}
+.download-btn:disabled{opacity:.5;cursor:not-allowed;border-color:var(--muted);color:var(--muted)}
+.download-info{display:flex;flex-direction:column;gap:4px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.download-size{font:11px Consolas,monospace;color:var(--muted)}
+.download-sha{font:10px Consolas,monospace;color:var(--muted);word-break:break-all}
+.requirements{margin-top:40px;padding:24px;background:linear-gradient(145deg,#0b2030ef,#071522f5);border:1px solid var(--line);border-radius:12px}
+.requirements h2{font-size:18px;margin:0 0 16px}
+.req-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.req-item{display:flex;align-items:flex-start;gap:12px}
+.req-icon{width:24px;height:24px;border:1px solid var(--line);border-radius:6px;display:grid;place-items:center;color:var(--cyan);font-size:12px;flex-shrink:0}
+.req-text{font-size:13px;color:var(--text)}
+.req-text strong{display:block;color:var(--cyan);margin-bottom:4px}
+.steps{margin-top:40px}
+.steps h2{font-size:18px;margin:0 0 16px}
+.step-list{counter-reset:step;display:flex;flex-direction:column;gap:16px}
+.step-item{display:flex;gap:16px;padding:16px;background:linear-gradient(145deg,#0b2030ef,#071522f5);border:1px solid var(--line);border-radius:8px}
+.step-number{counter-increment:step;content:counter(step);width:32px;height:32px;border:1px solid var(--cyan);border-radius:50%;display:grid;place-items:center;color:var(--cyan);font:bold 14px Consolas,monospace;flex-shrink:0}
+.step-content{flex:1}
+.step-title{font-weight:600;margin:0 0 4px}
+.step-desc{color:var(--muted);font-size:13px;margin:0}
+.notes{margin-top:40px;padding:20px;background:#081824;border:1px solid var(--line);border-radius:8px;font-size:13px;color:var(--muted)}
+.notes ul{margin:8px 0;padding-left:20px}
+.notes li{margin:4px 0}
+.footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:12px}
+.footer a{margin:0 8px}
+@media(max-width:600px){
+  h1{font-size:28px}
+  .platform-grid{grid-template-columns:1fr}
+  .step-item{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="logo">J</div>
+<h1>J.A.R.V.I.S. Share</h1>
+<p class="subtitle">Cross-platform desktop assistant — Windows, macOS & Arch Linux</p>
+<span class="version" id="version">v1.0.0</span>
+</header>
+
+<main>
+<section class="platform-grid" id="platform-grid">
+<!-- Populated by JS -->
+</section>
+
+<section class="requirements">
+<h2>Requirements</h2>
+<div class="req-grid">
+<div class="req-item">
+<div class="req-icon">●</div>
+<div class="req-text"><strong>Node.js 18+</strong> Required to run the JARVIS server. <a href="https://nodejs.org">Download</a></div>
+</div>
+<div class="req-item">
+<div class="req-icon">●</div>
+<div class="req-text"><strong>Chromium Browser</strong> Chrome, Edge, or Brave for tab control features.</div>
+</div>
+<div class="req-item">
+<div class="req-icon">●</div>
+<div class="req-text"><strong>Ollama (optional)</strong> For local AI. <a href="https://ollama.ai">Download</a> then run <code>ollama pull qwen3:1.7b</code></div>
+</div>
+<div class="req-item">
+<div class="req-icon">●</div>
+<div class="req-text"><strong>Microphone</strong> For voice commands and wake-word detection.</div>
+</div>
+</div>
+</section>
+
+<section class="steps">
+<h2>Installation Steps</h2>
+<div class="step-list">
+<div class="step-item">
+<div class="step-number"></div>
+<div class="step-content">
+<h3 class="step-title">Download</h3>
+<p class="step-desc">Select your platform above and download the appropriate package.</p>
+</div>
+</div>
+<div class="step-item">
+<div class="step-number"></div>
+<div class="step-content">
+<h3 class="step-title">Extract / Install</h3>
+<p class="step-desc"><strong>Windows:</strong> Run the <code>.exe</code> installer or extract the ZIP.<br><strong>macOS:</strong> Open the <code>.dmg</code> and drag JARVIS.app to Applications, or extract the ZIP.<br><strong>Arch Linux:</strong> <code>sudo pacman -U jarvis-share-*-x86_64.pkg.tar.zst</code> (native package) or run the AppImage.</p>
+</div>
+</div>
+<div class="step-item">
+<div class="step-number"></div>
+<div class="step-content">
+<h3 class="step-title">Configure in the app</h3>
+<p class="step-desc">No file editing needed. On first launch the <strong>setup wizard</strong> opens: pick your AI provider (local Ollama or an external API), paste your API key, and press <em>Test Connection</em>. Everything can be changed later from the ⚙ SETUP button in the app.</p>
+</div>
+</div>
+<div class="step-item">
+<div class="step-number"></div>
+<div class="step-content">
+<h3 class="step-title">Launch</h3>
+<p class="step-desc"><strong>Windows:</strong> Run <code>Start-Jarvis.bat</code>.<br><strong>macOS:</strong> Run <code>./start-jarvis.sh</code> or open JARVIS.app.<br><strong>Arch Linux:</strong> Launch <i>J.A.R.V.I.S. Share</i> from your application menu, or run <code>jarvis-share</code> in a terminal.</p>
+</div>
+</div>
+<div class="step-item">
+<div class="step-number"></div>
+<div class="step-content">
+<h3 class="step-title">Enable Voice</h3>
+<p class="step-desc">Allow microphone access, click "ENABLE VOICE", then say "Jarvis, open Chrome" to test.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="notes">
+<h3 style="margin:0 0 8px;color:var(--amber)">Important Notes</h3>
+<ul>
+<li><strong>No personal data included:</strong> This package contains no API keys, conversation history, browser profiles, or private configuration.</li>
+<li><strong>First run:</strong> Creates local data folders in your user directory (<code>%LOCALAPPDATA%\JARVIS</code> on Windows, <code>~/Library/Application Support/JARVIS</code> on macOS).</li>
+<li><strong>Offline speech:</strong> The <code>offline-asr/</code> folder with Whisper model and runtime is now included in the package. Local voice recognition works out of the box — no need to copy files from another install.</li>
+<li><strong>Browser control:</strong> Say "enable browser control" to connect JARVIS to Chrome/Edge for tab management.</li>
+<li><strong>Security:</strong> No Roblox cookies, browser sessions, or credentials are collected or transmitted. All processing is local.</li>
+</ul>
+</section>
+</main>
+
+<footer class="footer">
+<p>J.A.R.V.I.S. Share Package · Built from source · <a href="https://github.com">GitHub</a> · <a href="README.txt">Full Manual</a></p>
+<p>Report issues: <a href="https://github.com/issues">GitHub Issues</a></p>
+</footer>
+</div>
+
+<script>
+// Embedded build manifest. availability:"built" disables nothing;
+// availability:"upcoming" renders the button disabled with an honest note —
+// a package is only advertised as downloadable once scripts/package.js
+// stamps real sha256 values (see package.config.json).
+const BUILD_MANIFEST = {
+  version: "1.1.0",
+  builds: {
+    "windows-x64": {
+      platform: "Windows (x64)",
+      files: [
+        { name: "JARVIS-Share-windows-x64.zip", size: "~45 MB", sha256: "pending", availability: "upcoming" },
+        { name: "JARVIS-Share-windows-x64-installer.exe", size: "~48 MB", sha256: "pending", availability: "upcoming" }
+      ]
+    },
+    "windows-arm64": {
+      platform: "Windows (ARM64)",
+      files: [
+        { name: "JARVIS-Share-windows-arm64.zip", size: "~45 MB", sha256: "pending", availability: "upcoming" }
+      ]
+    },
+    "macos-x64": {
+      platform: "macOS (Intel)",
+      files: [
+        { name: "JARVIS-Share-macos-x64.dmg", size: "~50 MB", sha256: "pending", availability: "upcoming" },
+        { name: "JARVIS-Share-macos-x64.zip", size: "~48 MB", sha256: "pending", availability: "upcoming" }
+      ]
+    },
+    "macos-arm64": {
+      platform: "macOS (Apple Silicon)",
+      files: [
+        { name: "JARVIS-Share-macos-arm64.dmg", size: "~50 MB", sha256: "pending", availability: "upcoming" },
+        { name: "JARVIS-Share-macos-arm64.zip", size: "~48 MB", sha256: "pending", availability: "upcoming" }
+      ]
+    },
+    "linux-x64": {
+      platform: "Arch Linux (x86_64)",
+      desc: "Native pacman package (PKGBUILD) — install with `pacman -U`, plus a portable AppImage.",
+      files: [
+        { name: "jarvis-share-1.1.0-1-x86_64.pkg.tar.zst", size: "~30 MB", sha256: "pending", availability: "upcoming", pacman: true },
+        { name: "JARVIS-Share-linux-x64.AppImage", size: "~65 MB", sha256: "pending", availability: "upcoming" }
+      ]
+    },
+    "linux-arm64": {
+      platform: "Linux (ARM64)",
+      desc: "AppImage only; ARM64 is unverified until built and run natively.",
+      files: [
+        { name: "JARVIS-Share-linux-arm64.AppImage", size: "~65 MB", sha256: "pending", availability: "upcoming", pacman: false }
+      ]
+    }
+  }
+};
+
+// Reliable platform detection: use userAgentData high-entropy values when the
+// browser offers them (Windows ARM + Apple Silicon report correctly there),
+// then fall back to a careful UA/platform scan. Never guesses an arch from
+// "Intel in UA" alone — every macOS Intel-vs-ARM case must come from
+// uaData.architecture. Returns { os, arch, key } or null when genuinely unknown.
+function detectPlatform() {
+  const ua = navigator.userAgent;
+  const setup = { os: null, arch: 'x64' };
+  try {
+    if (navigator.userAgentData && navigator.userAgentData.platform) {
+      setup.os = navigator.userAgentData.platform; // 'Windows' | 'macOS' | 'Linux' | 'Chrome OS'
+    }
+  } catch {}
+  if (!setup.os) {
+    if (/Windows/.test(ua)) setup.os = 'Windows';
+    else if (/Macintosh|Mac OS X/.test(ua)) setup.os = 'macOS';
+    else if (/Android/.test(ua)) return { os: 'Android', arch: 'unavailable', key: null };
+    else if (/Linux/.test(ua)) setup.os = 'Linux';
+    else return { os: 'Unknown', arch: 'unknown', key: null };
+  }
+  // UA-CH gives exact arch/bitness synchronously:
+  try {
+    const brands = (navigator.userAgentData && navigator.userAgentData.brands) || [];
+    if (navigator.userAgentData && brands.length) {
+      // synchronous data may lack arch — queue the real work:
+      navigator.userAgentData.getHighEntropyValues(['architecture', 'bitness', 'platformVersion']).then(values => {
+        const arch = mapArch(values.architecture, values.bitness);
+        if (arch) window.__detectedKey = keyFor(setup.os, arch);
+        highlightDetected();
+      }).catch(() => {});
+    }
+  } catch {}
+  // Heuristic fallback before UA-CH resolves (”arm“ never falsely maps):
+  const uaArch = /arm|aarch64/i.test(ua) ? 'arm64' : null;
+  if (uaArch) return { os: setup.os, arch: 'arm64', key: keyFor(setup.os, 'arm64') };
+  return { os: setup.os, arch: 'x64 (checking)', key: keyFor(setup.os, 'x64') };
+}
+
+function mapArch(architecture, bitness) {
+  if (!architecture) return null;
+  if (architecture === 'arm') return bitness === '32' ? null : 'arm64';
+  if (architecture === 'x86') return bitness === '32' ? null : 'x64';
+  return architecture; // e.g. 'arm64' already
+}
+
+function keyFor(os, arch) {
+  if (os === 'Windows') return arch === 'arm64' ? 'windows-arm64' : 'windows-x64';
+  if (os === 'macOS') return arch === 'arm64' ? 'macos-arm64' : 'macos-x64';
+  if (os === 'Linux' || os === 'Chrome OS') return arch === 'arm64' ? 'linux-arm64' : 'linux-x64';
+  return null;
+}
+
+function renderPlatformGrid() {
+  const container = document.getElementById('platform-grid');
+  container.innerHTML = ''; // safe to re-render when UA-CH resolves later
+  const detected = window.__detectedKey || (detectPlatform() && detectPlatform().key) || null;
+  
+  for (const [key, build] of Object.entries(BUILD_MANIFEST.builds)) {
+    const isDetected = key === detected;
+    const card = document.createElement('div');
+    card.className = `platform-card${isDetected ? ' recommended' : ''}`;
+    
+    if (isDetected) {
+      card.innerHTML += '<span class="platform-badge">YOUR SYSTEM</span>';
+    }
+    
+    let filesHtml = '';
+    for (const file of build.files) {
+      const isUpcoming = file.availability === 'upcoming';
+      const isInstaller = file.name.endsWith('.exe') || file.name.endsWith('.dmg') || Boolean(file.pacman);
+      filesHtml += `
+        <a href="${isUpcoming ? '#' : file.name}" class="download-btn ${!isUpcoming && isInstaller ? 'primary' : ''}" ${isUpcoming ? 'data-upcoming="1"' : ''}>
+          ${isInstaller ? '⬇' : '📦'} ${file.name.replace(/^JARVIS-Share-/, '')}
+        </a>
+        <div class="download-info">
+          <span class="download-size">${file.size}</span>
+          <span class="download-sha">SHA256: ${file.sha256}${isUpcoming ? ' · not built yet' : ''}</span>
+        </div>
+      `;
+    }
+    
+    card.innerHTML += `
+      <div class="platform-icon">${key.startsWith('windows') ? '🪟' : key.startsWith('macos') ? '🍎' : '🐧'}</div>
+      <h3 class="platform-name">${build.platform}</h3>
+      <p class="platform-desc">${build.desc || (key.startsWith('windows') ? 'Windows 10/11 (64-bit or ARM64)' : key.startsWith('macos') ? 'macOS 10.15+ (Intel & Apple Silicon)' : 'Linux (experimental)')}</p>
+      ${filesHtml}
+    `;
+    
+    container.appendChild(card);
+  }
+  
+  const info = document.createElement('div');
+  info.className = 'platform-desc';
+  info.style.gridColumn = '1/-1';
+  info.innerHTML = detected
+    ? `Your device was detected as <b>${detected}</b>. The matching card above is marked YOUR SYSTEM.`
+    : 'Your device or browser could not be identified reliably. Choose the package that matches your operating system and architecture manually.';
+  container.appendChild(info);
+}
+
+// Re-render the grid once UA-CH resolves the exact architecture (async)
+function highlightDetected() {
+  renderPlatformGrid();
+}
+
+// Initialize
+document.getElementById('version').textContent = `v${BUILD_MANIFEST.version}`;
+renderPlatformGrid();
+
+// Check for download links (upcoming builds are clearly marked, no fake files)
+document.querySelectorAll('.download-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    if (btn.dataset.upcoming === '1') {
+      e.preventDefault();
+      alert('This package has not been built yet. See README: `node scripts/package.js` on that platform produces it, or check back after the first release.');
+    }
+  });
+});
+</script>
+</body>
+</html>
